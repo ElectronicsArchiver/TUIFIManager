@@ -56,63 +56,58 @@ for more details look into the `__main__.py`
 * Effect on cutted Files
 * [Drop files into GUI apps](https://github.com/GiorgosXou/TUIFIManager/issues/21)
 
-### *Common Shortcuts\Keybindings*
-| Shortcuts   | vim_mode | Action                                        |
-|----         | ---- |:----                                          |
-|`SHIFT + TAB`  |   |Moves selected file to the previous directory |
-|`KEY_BACKSPACE`| `J` |Opens\Goes to the previous directory          |
-|`ALT + DOWN`   |   |Opens\Closes the "right-click menu"           |
-|`KEY_HOME`     | `H`  |Navigates to the $HOME directory              |
-|`KEY_F5`       |   |Reload\Refresh current directory              |
-|`CTRL + V`     | `p` |Pastes the Copied or Cuted files              |
-|`DEL`          | `CTRL+d`  |Deletes the selected files                    |
-|`CTRL + F`     | `i`  |Find Files *(if not auto_find_on_typing)*     |
-|`CTRL + O`     | `O`  |Open whole directory in editor                |
-|`CTRL + C`     | `y`  |Copies the selected files                     |
-|`CTRL + K`     |   |Copies the selected files                     |
-|`CTRL + X`     | `c`  |Cuts the selected files                       |
-|`CTRL + R`     | `r` |Rename selected file                          | 
-|`CTRL + N`     | `W` |Create new folder                             |
-|`CTRL + W`     | `w` |Create new file                               |
-|`ARROW KEYS`   | `l` `k` `j` `h`  |Navigates files                               |
-|`KEY_ENTER`    | `K` `o` |Opens files                                   |
-|`ESCAPE`       |   |Exit                                          |
+<br>
+<br>
 
-### *TERMUX only Shortcuts\Keybindings*
-| Shortcut    | Action                                                                         |
-|----         |:----                                                                           |
-|`CTRL + DOWN`| Goes in&out of select-mode while also automatically copies the selected file(s)|
-|`CTRL + LEFT`| Goes out of select-mode while also cuts the seleccted file(s)                  |
-|`CTRL + END` | Goes out of select-mode while also deleting the selected file(s)               |
-|`CTRL + UP`  | Same as `CTRL + V`, Pastes the Copied or Cuted files                           |
-|`END`        | Deletes selected files                                                         |
+## Keybindings
 
+<br>
 
-# Documentation
-<sub>Work in progress 🛠️🏗 ...</sub>
+### Common
 
+| Shortcuts | Vim Mode | Action
+|:---------:|:--------:|:-------:
+| <kbd>  Shift  </kbd>  +  <kbd>  Tab  </kbd>  || Move items to <br> previous directory
+| <kbd>  Backspace  </kbd> | <kbd>  J  </kbd> | Previous Directory
+| <kbd>  Alt  </kbd>  +  <kbd>  🠗  </kbd> || Context Menu
+| <kbd>  Home  </kbd> | <kbd>  H  </kbd> | Home Directory
+| <kbd>  F5  </kbd> || Refresh Directory
+| <kbd>  Ctrl  </kbd>  +  <kbd>  V  </kbd> | <kbd>  p  </kbd> | Paste
+| <kbd>  Delete  </kbd> | <kbd>  Ctrl  </kbd>  +  <kbd>  D  </kbd> | Delete
+| <kbd>  Ctrl  </kbd>  +  <kbd>  F  </kbd> | <kbd>  i  </kbd> | File Search
+| <kbd>  Ctrl  </kbd>  +  <kbd>  O  </kbd> | <kbd>  O  </kbd> | Open Directory
+| <kbd>  Ctrl  </kbd>  +  <kbd>  C  </kbd> | <kbd>  y  </kbd> | Copy Items
+| <kbd>  Ctrl  </kbd>  +  <kbd>  K  </kbd> || Copy Item
+| <kbd>  Ctrl  </kbd>  +  <kbd>  X  </kbd> | <kbd>  c  </kbd> | Cut
+| <kbd>  Ctrl  </kbd>  +  <kbd>  R  </kbd> | <kbd>  r  </kbd> | Rename 
+| <kbd>  Ctrl  </kbd>  +  <kbd>  N  </kbd> | <kbd>  W  </kbd> | New Folder
+| <kbd>  Ctrl  </kbd>  +  <kbd>  W  </kbd> | <kbd>  w  </kbd> | New File
+| <kbd>  🠔  </kbd>  <kbd>  🠕  </kbd>  <kbd>  🠗  </kbd>  <kbd>  🠖  </kbd> | <kbd>  l  </kbd>  <kbd>  k  </kbd>  <kbd>  j  </kbd>  <kbd>  h  </kbd> | Navigate
+| <kbd>  Enter  </kbd> | <kbd>  K  </kbd>  <kbd>  o  </kbd> | Open
+| <kbd>  Escape  </kbd> || Exit
 
-## Customization 
-***How do I enable vim_mode ?***
-> Set `tuifi_vim_mode` enviroment variable to `True`
+<br>
 
-***How do I map keys in vim_mode?***
-> This ain't possible right now althought you could play around with the content of `toggle_vim_mode` function under `__init__.py`
+### TERMUX Only
 
-***How do I set the default editor ?***
-> Set `tuifi_default_editor` enviroment variable to `vim` or whatever you prefer
+| Shortcut | Action
+|:---------|:--------
+| <kbd>  Ctrl  </kbd>  +  <kbd>  🠗  </kbd> | Goes in & out of select-mode while also automatically copies the selected file(s)
+| <kbd>  Ctrl  </kbd>  +  <kbd>  🠔  </kbd> | Goes out of select-mode while also cuts the seleccted file(s)
+| <kbd>  Ctrl  </kbd>  +  <kbd>  End  </kbd> | Goes out of select-mode while also deleting the selected file(s)
+| <kbd>  Ctrl  </kbd>  +  <kbd>  🠕  </kbd> | Same as `CTRL + V`, Pastes the Copied or Cuted files
+| <kbd>  End  </kbd> | Deletes selected files
 
-***How do I toggle hidden files/folders?***
-> Edit `__main__.py` and specify `suffixes=['*','.*']` for hidden files. [THIS NEEDS TO BE FIXED]
-
-***How do I change the default colors?***
-> A bit complicated to explain here just make an issue and I will explain it there
-
+<br>
+<br>
 
 # Donation
+
 I do really need money to survive, I have no job, living in a basement, making things for free, because I love to.
-- [***Paypal Address***](https://www.paypal.com/donate/?hosted_button_id=QNQN23M55EJVS)
-- ***Monero Address:*** `897ehhSQJQpGF7tYDhQM51jiX7nnHmzuYAW4q8JGwJxu8JKXvaK6AivCzatuJxnifjZ2qy98ks2g2PhmTaYCMMta2Ga2LJx`
+
+- ***Monero Address:*** 
+
+`897ehhSQJQpGF7tYDhQM51jiX7nnHmzuYAW4q8JGwJxu8JKXvaK6AivCzatuJxnifjZ2qy98ks2g2PhmTaYCMMta2Ga2LJx`
 
 <div align="center">
 
