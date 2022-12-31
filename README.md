@@ -32,7 +32,8 @@ from TUIFIManager import *
 ```
 for more details look into the `__main__.py`
 
-<img src="./Peek.gif">
+[![Preview]][#]
+
 <sub>FONT: Cartograph CF</sub>
 
 ## Features & Shortcuts  
@@ -114,8 +115,11 @@ I do really need money to survive, I have no job, living in a basement, making t
 - ***Monero Address:*** `897ehhSQJQpGF7tYDhQM51jiX7nnHmzuYAW4q8JGwJxu8JKXvaK6AivCzatuJxnifjZ2qy98ks2g2PhmTaYCMMta2Ga2LJx`
 
 <div align="center">
-<img src='./TUIFI.png'>
+
+[![Logo]][#]
+
 </div>
+
 
 
 # Special thanks to
@@ -127,4 +131,8 @@ I do really need money to survive, I have no job, living in a basement, making t
 Any Idea with this issue https://github.com/unicurses/unicurses/issues/21 ?
 
 
+[Preview]: Resources/Preview.gif
+[Logo]: Resources/Logo.png
+
+[#]: #
 
