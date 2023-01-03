@@ -1,5 +1,6 @@
 #from unicurses import  *
 import unicurses
+
 # WORK IN PROGRESS  | WORK IN PROGRESS | WORK IN PROGRESS | WORK IN PROGRESS | WORK IN PROGRESS
 # WORK IN PROGRESS  | WORK IN PROGRESS | WORK IN PROGRESS | WORK IN PROGRESS | WORK IN PROGRESS
 # WORK IN PROGRESS  | WORK IN PROGRESS | WORK IN PROGRESS | WORK IN PROGRESS | WORK IN PROGRESS
@@ -58,13 +59,13 @@ class TUIMenu:
         self.pad = unicurses.newpad(self.height, self.width) #unicurses.newwin(len(self.items)*2+1, self.width, self.y+offy , self.x+offx )
         unicurses.wbkgd(self.pad,unicurses.COLOR_PAIR(1 + self.color_pair_offset))
         i = 1
-        unicurses.mvwaddwstr(self.pad,0,0,'╭' + ('‒'*(self.width-2)) + '╮')
+        unicurses.mvwaddwstr(self.pad,0,0,'╭' + ('─'*(self.width-2)) + '╮')
         for item in self.items:
-            unicurses.mvwaddwstr(self.pad,i,0,'│ ' + item, unicurses.A_BOLD)
-            unicurses.mvwaddwstr(self.pad,i,self.width-1,'│',unicurses.A_BOLD)
-            unicurses.mvwaddwstr(self.pad,i+1,0,'├' + ('‒'*(self.width-2)) + '┤')
+            unicurses.mvwaddwstr(self.pad, i, 0, f'│ {item}', unicurses.A_BOLD)
+            unicurses.mvwaddwstr(self.pad,i,self.width-1,'│', unicurses.A_BOLD)
+            unicurses.mvwaddwstr(self.pad,i+1,0,'├' + ('─'*(self.width-2)) + '┤')
             i+=2
-        unicurses.mvwaddwstr(self.pad,i-1,0,'╰' + ('‒'*(self.width-2)) + '╯')
+        unicurses.mvwaddwstr(self.pad,i-1,0,'╰' + ('─'*(self.width-2)) + '╯')
 
         self.exists = True
         self.refresh()
@@ -93,50 +94,53 @@ class TUIMenu:
 
     __it = -1
     def handle_keyboard_events(self, event):
-        performed = False
-        if self.exists and not event == self.events.get('KEY_MOUSE'):
+        if self.exists and event != self.events.get('KEY_MOUSE'):
             if event == self.events.get('KEY_DOWN'):
-                performed=True
                 if self.__it == len(self.items) -1:
                     self.delete()
                     return True
                 self.__it +=1
                 unicurses.mvwchgat(self.pad, self.__it *2 -1, 1, self.width -2, unicurses.A_BOLD, 1 + self.color_pair_offset)
                 unicurses.mvwchgat(self.pad, self.__it *2 +1, 1, self.width -2, unicurses.A_BOLD, 7 + self.color_pair_offset)
+                return True
             elif event == self.events.get('KEY_UP'):
-                performed=True
                 if self.__it <= 0:
                     self.delete()
                     return True
                 self.__it -=1
                 unicurses.mvwchgat(self.pad, self.__it *2 +3, 1, self.width -2, unicurses.A_BOLD, 1 + self.color_pair_offset)
                 unicurses.mvwchgat(self.pad, self.__it *2 +1, 1, self.width -2, unicurses.A_BOLD, 7 + self.color_pair_offset)
+                return True
             elif event in self.events.get('KEY_ENTER'):
                 i = self.__it
                 self.delete()
                 return self.__getItem(i)
             else:
                 self.delete()
-                performed=True
-        return performed
+                return True
+        return False
 
 
+    __x = __y = 0
     def handle_mouse_events(self, id, x, y, z, bstate):
         performed = False
         if self.exists: # mevent == self.events.get('KEY_MOUSE')  #id, x, y, z, bstate = unicurses.getmouse()
-            if (x >= self.x and x <= self.x + self.width and y >= self.y and y <= self.y + self.height):
+            if self.x <= x <= self.x + self.width and self.y <= y <= self.y + self.height:
                 relative_y = y - self.y +1 # really Sus the +1 but nvm
-                if (bstate & self.events.get('BUTTON1_RELEASED')):
+                if bstate & self.events.get('BUTTON1_RELEASED'):
+                    if self.__x != x or self.__y != y : return 'exists'
                     item_position = len(self.items)
                     if (relative_y % 2) == 0:
                         # exit()
                         self.delete()
                         return self.__getItem(relative_y//2 -1)
                     performed=True
-                if (bstate & self.events.get('BUTTON1_PRESSED')):
+                if bstate & self.events.get('BUTTON1_PRESSED'):
                     performed=True
             else:
                 self.delete() #unicurses.ungetmouse(id, x, y, z, bstate )
+            self.__x, self.__y = x,y
+            return 'exists'
         return performed
 
 
